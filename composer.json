@@ -1,0 +1,10 @@
+{
+    "name": "grcamargo/todolist",
+    "description": "Simple Todo List to practice some php",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}

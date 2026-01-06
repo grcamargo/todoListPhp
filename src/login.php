@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+if(isset($_POST['login'])) {
+    
+}
+
+?><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body class="dark">
 
@@ -21,7 +28,7 @@
             <input type="password" id="password" placeholder="********">
         </div>
 
-        <button type="button" class="btn-login">Entrar</button>
+        <button type="button" name='login' class="btn-login">Entrar</button>
 
         <div class="form-footer">
             <a href="#">Esqueci minha senha</a>

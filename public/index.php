@@ -1,67 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body class="dark">
+<?php
 
-<div class="todo-container">
-    <div class="header">
-        <h1>Minha To-Do List</h1>
+session_start();
+session_regenerate_id(); //Não funciona bem para conexões instáveis (mobile, Wifi). Pesquisar solução de contorno https://www.php.net/session_regenerate_id
 
-        <div class="header-actions">
-            <button class="theme-toggle" title="Alternar tema">🌙</button>
-            <button class="logout" title="Sair">Sair</button>
-        </div>
-    </div>
 
-    <div class="todo-input">
-        <input type="text" placeholder="Adicionar nova tarefa">
-        <button>Adicionar</button>
-    </div>
+require_once __DIR__ . '/../vendor/autoload.php';
+$routes = require_once __DIR__ . '/../config/routes.php';
 
-    <ul class="todo-list">
+$uri = $_SERVER['PATH_INFO'] ?? '/';
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+$key = "$httpMethod|$uri";
 
-        <!-- Item pendente -->
-        <li>
-            <div class="task-content">
-                <span class="task-title">Estudar HTML e CSS</span>
-                <div class="task-meta">
-                    <small>Criado: 05/01/2026 10:30</small>
-                    <small>Editado: 05/01/2026 10:30</small>
-                </div>
-            </div>
+if(array_key_exists($key, $routes)) {
+    $exibitionView = $routes[$key];
+} else {
+    return http_response_code(404);
+}
 
-            <div class="task-actions">
-                <button class="mark-done" title="Marcar como feito">✔</button>
-                <button class="undo" title="Desfazer">↩</button>
-                <button class="edit">✏️</button>
-                <button class="delete">🗑️</button>
-            </div>
-        </li>
+require_once $exibitionView;
 
-        <!-- Item concluído -->
-        <li class="done">
-            <div class="task-content">
-                <span class="task-title">Criar layout da To-Do List</span>
-                <div class="task-meta">
-                    <small>Criado: 04/01/2026 18:20</small>
-                    <small>Editado: 04/01/2026 19:00</small>
-                </div>
-            </div>
-
-            <div class="task-actions">
-                <button class="mark-done" title="Marcar como feito">✔</button>
-                <button class="undo" title="Desfazer">↩</button>
-                <button class="edit">✏️</button>
-                <button class="delete">🗑️</button>
-            </div>
-        </li>
-
-    </ul>
-</div>
-
-</body>
-</html>
+?>

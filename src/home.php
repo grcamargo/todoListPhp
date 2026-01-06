@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Minhas Listas</title>
-    <link rel="stylesheet" href="/public/css/lists.css">
+    <link rel="stylesheet" href="../css/lists.css">
 </head>
 <body class="dark">
+
+
+<a href="/itens"  title="Meus itens"><button>Meus itens</button></a>
+<a href="/login" title="Login"><button>Login</button></a></a>
+<a href="/register" title="Register"><button>Register</button></a></a>
+
 
 <div class="app-container">
 
