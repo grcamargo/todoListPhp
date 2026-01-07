@@ -1,3 +1,4 @@
 criar-banco.php
 banco.sqlite
 /vendor/
+.env
