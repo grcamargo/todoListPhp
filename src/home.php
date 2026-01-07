@@ -7,13 +7,6 @@
 </head>
 <body class="dark">
 
-
-<a href="/itens"  title="Meus itens"><button>Meus itens</button></a>
-<a href="/login" title="Login"><button>Login</button></a></a>
-<a href="/register" title="Register"><button>Register</button></a></a>
-<a href="/logout" title="Logout"><button>Logout</button></a></a>
-
-
 <div class="app-container">
 
     <!-- Header -->
@@ -22,7 +15,7 @@
 
         <div class="header-actions">
             <button class="theme-toggle" title="Alternar tema">🌙</button>
-            <button class="logout" title="Sair">Sair</button>
+            <a href="/logout" title="Logout"><button class="logout" title="Sair">Sair</button></a>
         </div>
     </header>
 
@@ -41,7 +34,7 @@
             </div>
 
             <div class="list-actions">
-                <button title="Abrir">📂</button>
+                <a href="/itens"  title="Meus itens"><button title="Abrir">📂</button></a>
                 <button title="Editar">✏️</button>
                 <button title="Excluir">🗑️</button>
             </div>
@@ -55,7 +48,7 @@
             </div>
 
             <div class="list-actions">
-                <button title="Abrir">📂</button>
+                <a href="/itens"  title="Meus itens"><button title="Abrir">📂</button></a>
                 <button title="Editar">✏️</button>
                 <button title="Excluir">🗑️</button>
             </div>
