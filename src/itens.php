@@ -12,8 +12,7 @@
         <h1>Minha To-Do List</h1>
 
         <div class="header-actions">
-            <button class="theme-toggle" title="Alternar tema">🌙</button>
-            <button class="logout" title="Sair">Sair</button>
+            <a href="/" title="voltar"><button class="logout" title="voltar">Voltar</button></a>
         </div>
     </div>
 

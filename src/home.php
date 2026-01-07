@@ -14,14 +14,13 @@
         <h1>Minhas Listas</h1>
 
         <div class="header-actions">
-            <button class="theme-toggle" title="Alternar tema">🌙</button>
             <a href="/logout" title="Logout"><button class="logout" title="Sair">Sair</button></a>
         </div>
     </header>
 
     <!-- Botão nova lista -->
     <div class="toolbar">
-        <button class="btn-primary">+ Nova Lista</button>
+        <a href="/newList" title="newList"><button class="btn-primary">+ Nova Lista</button></a>
     </div>
 
     <!-- Listagem -->

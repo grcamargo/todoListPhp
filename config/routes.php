@@ -11,7 +11,9 @@ $routes = [
     'POST|/login' => __DIR__ . '/../src/login.php',
     'GET|/register' => __DIR__ . '/../src/register.php',
     'POST|/register' => __DIR__ . '/../src/register.php',
-    'GET|/logout' => __DIR__ . '/../src/logout.php'
+    'GET|/logout' => __DIR__ . '/../src/logout.php',
+    'POST|/newList' => __DIR__ . '/../src/newList.php',
+    'GET|/newList' => __DIR__ . '/../src/newList.php'
 ];
 
 return $routes;
