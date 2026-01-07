@@ -10,7 +10,8 @@ $routes = [
     'GET|/login' => __DIR__ . '/../src/login.php',
     'POST|/login' => __DIR__ . '/../src/login.php',
     'GET|/register' => __DIR__ . '/../src/register.php',
-    'POST|/register' => __DIR__ . '/../src/register.php'
+    'POST|/register' => __DIR__ . '/../src/register.php',
+    'GET|/logout' => __DIR__ . '/../src/logout.php'
 ];
 
 return $routes;
