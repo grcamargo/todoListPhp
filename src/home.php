@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+
+use App\Entity\TodoList;
+use App\Entity\User;
+use App\Repository\TodoListRepository;
+use Dotenv\Dotenv;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$pdo = new PDO($_ENV['DB_DRIVER'] . ":host=" . $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
+
+$user = new User(8, 'gustavo', 'grc@gmail.com', 'coxinha123', ('Y-m-d H:i:s'), date('Y-m-d H:i:s'));
+$todoListRepository = new TodoListRepository($pdo);
+$resultList = $todoListRepository->getAllLists($user);
+
+if(isset($_POST['remove'])) {
+    $todoListRepository->removeList($_GET['id']);
+    header('Location: /');
+}
+
+?><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -25,33 +48,23 @@
 
     <!-- Listagem -->
     <ul class="lists">
-        <li class="list-card">
-            <div class="list-info">
-                <h2>Trabalho</h2>
-                <p>Tarefas relacionadas ao trabalho</p>
-                <small>Criada em: 01/01/2026</small>
-            </div>
+        <?php foreach($resultList as $list): ?>
+            <li class="list-card">
+                <div class="list-info">
+                    <h2><?= $list['name']; ?></h2>
+                    <p><?= $list['description'];?></p>
+                    <small>Criada em: <?= $list['created_at'];?></small>
+                </div>
 
-            <div class="list-actions">
-                <a href="/itens"  title="Meus itens"><button title="Abrir">📂</button></a>
-                <button title="Editar">✏️</button>
-                <button title="Excluir">🗑️</button>
-            </div>
-        </li>
-
-        <li class="list-card">
-            <div class="list-info">
-                <h2>Pessoal</h2>
-                <p>Coisas do dia a dia</p>
-                <small>Criada em: 15/12/2025</small>
-            </div>
-
-            <div class="list-actions">
-                <a href="/itens"  title="Meus itens"><button title="Abrir">📂</button></a>
-                <button title="Editar">✏️</button>
-                <button title="Excluir">🗑️</button>
-            </div>
-        </li>
+                <div class="list-actions">
+                    <a href="/itens"  title="Meus itens"><button title="Abrir">📂</button></a>
+                    <a href="/newList"  title="Editar"><button title="Editar">✏️</button></a>
+                    <form name="remove" method="POST" action="/?id=<?= $list['id']; ?>">
+                        <button name="remove" title="remove" method="post" >🗑️</button>
+                    </form>
+                </div>
+            </li>
+        <?php endforeach; ?>
     </ul>
 
 </div>

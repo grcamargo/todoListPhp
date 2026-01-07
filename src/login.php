@@ -8,11 +8,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$pathDb = __DIR__ . '/banco.sqlite';
-
 $pdo = new PDO($_ENV['DB_DRIVER'] . ":host=" . $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
-
-
 
 if(isset($_POST['login'])) {
     $email = $_POST['email'];

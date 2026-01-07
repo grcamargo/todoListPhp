@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 use App\Entity\TodoList;
+use App\Entity\User;
 use PDO;
 
 class TodoListRepository {
@@ -25,15 +26,22 @@ class TodoListRepository {
         }
     }
 
-    public function getAllLists(TodoList $list): array {
+    public function getAllLists(User $user): array {
+        
         $sql = 'SELECT * FROM lists WHERE user_id = :user_id;';
         $statement= $this->pdo->prepare($sql);
-        $statement->bindValue(':user_id', $list->getUserId());
-        $result_array = $statement->fechAll(PDO::FETCH_ASSOC);
+        $statement->bindValue(':user_id', $user->getId());
+        $statement->execute();
+        $result_array = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        array_map(function($result) {
-            $list = new TodoList(null, null, $result['name'], $result['description'], $result['created_at'], $result['updated_at']);
-            $list->setId($result['id']);
-        }, $result_array);
+        return $result_array;
+    }
+
+    public function removeList(int $id): void {
+        $sql = 'DELETE FROM lists WHERE id = :id;';
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+
     }
 }

@@ -24,6 +24,10 @@ class User {
         $this->id = $id;
     }
 
+    public function getId(): int {
+        return $this->id;
+    }
+
     private function setPasswordHash(string $password): string {
         return $this->password = password_hash($password, PASSWORD_ARGON2ID);
     }
