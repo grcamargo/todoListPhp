@@ -23,8 +23,14 @@ if(array_key_exists($key, $routes)) {
             exit();
         }
     } else {
-        require_once __DIR__ . '/../src/login.php';
-        exit();
+        if($uri === '/register') {
+            require_once __DIR__ . '/../src/register.php';
+            exit();
+        } else {
+            require_once __DIR__ . '/../src/login.php';
+            exit();
+        }
+        
     }
 
 } else {

@@ -55,7 +55,7 @@ if(isset($_POST['login'])) {
         <button type="submit" name='login' class="btn-login">Entrar</button>
 
         <div class="form-footer">
-            <a href="#">Esqueci minha senha</a>
+            <a href="/register">Cadastrar</a>
         </div>
     </form>
 </div>
