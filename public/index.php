@@ -12,8 +12,37 @@ $uri = $_SERVER['PATH_INFO'] ?? '/';
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $key = "$httpMethod|$uri";
 
+if(array_key_exists($key, $routes)) {
+    $exibitionView = $routes[$key];
+    if (array_key_exists('logged', $_SESSION)) {
+        if($uri === '/login' || $uri === '/register') {
+            header('Location: /');
+            exit();
+        } else {
+            require_once $exibitionView;
+            exit();
+        }
+    } else {
+        require_once __DIR__ . '/../src/login.php';
+        exit();
+    }
 
-$isLoginRoute = $uri === '/login';
+} else {
+    return http_response_code(404);
+}
+
+/* if (array_key_exists('logged', $_SESSION)) {
+    if($uri === '/login') {
+        header('Location: /');
+        exit();
+    } else {
+
+    }
+} else {
+
+} */
+
+/* $isLoginRoute = $uri === '/login';
 if (!array_key_exists('logged', $_SESSION) && !$isLoginRoute) {
     header('Location: /login');
     return;
@@ -23,8 +52,8 @@ if(array_key_exists($key, $routes)) {
     $exibitionView = $routes[$key];
 } else {
     return http_response_code(404);
-}
+} */
 
-require_once $exibitionView;
+/* require_once $exibitionView; */
 
 ?>

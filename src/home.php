@@ -11,6 +11,7 @@
 <a href="/itens"  title="Meus itens"><button>Meus itens</button></a>
 <a href="/login" title="Login"><button>Login</button></a></a>
 <a href="/register" title="Register"><button>Register</button></a></a>
+<a href="/logout" title="Logout"><button>Logout</button></a></a>
 
 
 <div class="app-container">
