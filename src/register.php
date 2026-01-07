@@ -11,7 +11,7 @@ $dotenv->load();
 
 $pathDb = __DIR__ . '/banco.sqlite';
 $pdo = new PDO($_ENV['DB_DRIVER'] . ":host=" . $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
-
+var_dump($pdo);
 if(isset($_POST['cadastrar'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
