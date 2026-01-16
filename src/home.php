@@ -3,6 +3,7 @@
 use App\Entity\TodoList;
 use App\Entity\User;
 use App\Repository\TodoListRepository;
+use App\Repository\UserRepository;
 use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -12,9 +13,10 @@ $dotenv->load();
 
 $pdo = new PDO($_ENV['DB_DRIVER'] . ":host=" . $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
 
-$user = new User(8, 'gustavo', 'grc@gmail.com', 'coxinha123', ('Y-m-d H:i:s'), date('Y-m-d H:i:s'));
+$userRepository = new UserRepository($pdo);
+$userInfo = $userRepository->getUserInfoById($_SESSION['user_id']);
 $todoListRepository = new TodoListRepository($pdo);
-$resultList = $todoListRepository->getAllLists($user);
+$resultList = $todoListRepository->getAllLists($userInfo['id']);
 
 if(isset($_POST['remove'])) {
     $todoListRepository->removeList($_GET['id']);

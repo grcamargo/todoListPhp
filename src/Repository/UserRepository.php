@@ -41,4 +41,28 @@ class UserRepository {
         return false;
 
     }
+
+    public function getUserInfoByEmail(string $email): array {
+        $sql = 'SELECT * FROM users WHERE email = :email';
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':email', $email);
+        if($statement->execute()) {
+            $userData = $statement->fetch(PDO::FETCH_ASSOC);
+            return $userData;
+        }
+
+        return [];
+    }
+
+    public function getUserInfoById(string $userId): array {
+        $sql = 'SELECT * FROM users WHERE id = :userId';
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':userId', $userId);
+        if($statement->execute()) {
+            $userData = $statement->fetch(PDO::FETCH_ASSOC);
+            return $userData;
+        }
+
+        return [];
+    }
 }

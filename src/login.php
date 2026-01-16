@@ -18,6 +18,8 @@ if(isset($_POST['login'])) {
 
     if ($isValidLogin) {
             $_SESSION['logged'] = true;
+            $userInfo = $userRepository->getUserInfoByEmail($email);
+            $_SESSION['user_id'] = $userInfo['id'];
             header('Location: /');
         } else {
             header('Location: /login?sucesso=0');

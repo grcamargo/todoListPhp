@@ -26,11 +26,11 @@ class TodoListRepository {
         }
     }
 
-    public function getAllLists(User $user): array {
+    public function getAllLists(string $userId): array {
         
         $sql = 'SELECT * FROM lists WHERE user_id = :user_id;';
         $statement= $this->pdo->prepare($sql);
-        $statement->bindValue(':user_id', $user->getId());
+        $statement->bindValue(':user_id', $userId);
         $statement->execute();
         $result_array = $statement->fetchAll(PDO::FETCH_ASSOC);
 

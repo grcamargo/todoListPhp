@@ -4,6 +4,9 @@ namespace App\Entity;
 
 class TodoList {
 
+    /** @var TodoItem[] */
+    private array $items = [];
+
     private ?int $id;
     private ?int $user_id;
     private string $name;
